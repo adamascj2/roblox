@@ -1,0 +1,13 @@
+local tweenservice = game:GetService("TweenService")
+local tweeninfo = TweenInfo.new(2,Enum.EasingStyle.Linear)
+local portaAbertaProp = { Position = Vector3.new(-42.5, -26.764, -106)}
+local open = tweenservice:Create(workspace.base2.Door,tweeninfo,portaAbertaProp)
+function onTouched(part)
+h = part.Parent:findFirstChild("Humanoid")
+ if h ~= nil then
+	    
+		open:Play()
+  end
+end
+
+script.Parent.Touched:connect(onTouched) 
