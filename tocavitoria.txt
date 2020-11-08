@@ -1,0 +1,9 @@
+function onTouched(part)
+h = part.Parent:findFirstChild("Humanoid")
+ if h ~= nil then
+	
+		workspace.basefinal.basearca.Sound.Playing = true
+ end
+end
+
+script.Parent.Touched:connect(onTouched) 
