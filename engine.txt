@@ -1,0 +1,59 @@
+local movendo = false 
+workspace.engine.Velocity =    Vector3.new(0, 0, 0)
+function frenteClicked()
+ movendo = true
+  local pos = workspace.engine.Position
+  while true do
+   pos = pos + workspace.engine.CFrame.lookVector
+   local deltaUnitario = pos  - workspace.engine.Position
+		 workspace.engine.Velocity =  deltaUnitario
+		 workspace.engine.RotVelocity = Vector3.new(0, 0, 0)
+		 
+   wait(0.15)
+   -- Brick tem a velocidade unitaria. Podemos reduzir o wait    para acelerar.
+   if  movendo == false then 
+     break
+   end
+  end
+ end 
+workspace.engine.frente.ClickDetector.MouseClick:connect(frenteClicked)
+function paraClicked()
+  movendo = false 
+   workspace.engine.Velocity = Vector3.new(0, 20, 0)
+   workspace.engine.RotVelocity = Vector3.new(0, 0, 0)
+ end 
+workspace.engine.para.ClickDetector.MouseClick:connect(paraClicked)
+
+function rotDClicked()
+ movendo = true
+  while true do
+   workspace.engine.RotVelocity = Vector3.new(0, -1, 0)
+   wait(0.1)
+   if  movendo == false then 
+    break
+   end
+ end
+end
+workspace.engine.rotdir.ClickDetector.MouseClick:connect(rotDClicked)
+function rotEClicked()
+ movendo = true
+  while true do
+   workspace.engine.RotVelocity = Vector3.new(0,  1, 0)
+   wait(0.1)
+   if  movendo == false then 
+    break
+   end
+  end
+ end
+workspace.engine.rotesq.ClickDetector.MouseClick:connect(rotEClicked)	
+function sobeClicked()
+ movendo = true
+  while true do
+   workspace.engine.Velocity =    Vector3.new(0, 20, 0)
+   wait(0.1)
+   if  movendo == false then 
+    break
+   end
+  end
+ end
+workspace.engine.sobe.ClickDetector.MouseClick:connect(sobeClicked)

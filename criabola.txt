@@ -1,0 +1,15 @@
+function onClicked()
+
+ --esfera (sf) 
+ local sf = Instance.new("Part")
+ sf.Parent = game.Workspace
+ sf.Name = "sf"
+ sf.formFactor = 0
+ sf.Shape = 0
+ sf.BrickColor = BrickColor.new(21)
+ sf.Position = Vector3.new(-60,56,-153)
+ sf.Size = Vector3.new(7,7,7)
+
+
+end 
+script.Parent.ClickDetector.MouseClick:connect(onClicked)
