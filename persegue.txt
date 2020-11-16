@@ -1,0 +1,54 @@
+local pathfindingService = game:GetService("PathfindingService")
+local path = pathfindingService:CreatePath()
+local bola = script.Parent 
+--Tem que transformar "bola de fogo" em Model ex;acrescentar part e tirar depois 
+--script fica no Model
+function findNearestTorso(pos)
+
+	local list = game.Workspace:children()
+	local torso = nil
+	local dist = 400 --   proximidade para disparar
+	local temp = nil
+	local human = nil
+	local temp2 = nil
+	for x = 1, #list do
+		temp2 = list[x]
+		if (temp2.className == "Model")   and (temp2 ~= script.Parent)then
+			temp = temp2:findFirstChild("LowerTorso")
+			human = temp2:findFirstChild("Humanoid")
+			if (temp ~= nil) and (human ~= nil) and (human.Health > 0) then
+				if (temp.Position - pos).magnitude < dist then
+					torso = temp
+					dist = (temp.Position - pos).magnitude
+				end
+			end
+		end
+	end
+	return torso
+end
+
+ 
+ 
+while true do
+	wait(0.1)
+	local destination = findNearestTorso(script.Parent.boladefogo.Position)
+	
+	if destination ~= nil then
+
+		-- Calcula o Caminho
+		path:ComputeAsync(script.Parent.boladefogo.Position, destination.Position)
+		
+		-- Pegas os WayPoints 
+		local waypoints = path:GetWaypoints()
+		 
+		
+		-- percorre os waypoints e move  o model
+		for k, waypoint in pairs(waypoints) do
+			
+			script.Parent:MoveTo(waypoint.Position)
+			
+			 
+			wait(0.1)
+		end
+	end
+end
