@@ -1,0 +1,7 @@
+local tool = script.Parent.Parent
+ 
+local function pega(player)
+	tool.Parent = game.Workspace[player.Name]
+end
+
+script.Parent.ClickDetector.MouseClick:Connect(pega)
