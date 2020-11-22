@@ -1,0 +1,33 @@
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local remoteEvent = ReplicatedStorage:WaitForChild('ShotEvent')
+
+remoteEvent.OnServerEvent:Connect(function(player,gunPos,mosPos)
+	
+	--os dois parametros estao no script anterior
+	--criando bola
+   local bl = Instance.new('Part')
+   bl.Parent = game.Workspace
+   bl.Name = "bl"
+   bl.formFactor = 0
+   bl.Shape = 0
+   bl.BrickColor = BrickColor.new(21)
+   bl.Position = Vector3.new(gunPos.x ,gunPos.y ,gunPos.z)
+	bl.Size = Vector3.new(1,1,1)
+	bl.CanCollide = false
+	--para tirar gravidade da bola
+    local antiGravity = 1
+    local bf = Instance.new("BodyForce")
+    bf.Force = Vector3.new(0, workspace.Gravity * bl:GetMass() * antiGravity, 0)
+    bf.Parent = bl
+	--para movimentar a bola 
+	local speed = 50
+	bl.CFrame = CFrame.new(gunPos,mosPos)
+	bl.Velocity = bl.CFrame.lookVector*speed
+	--para gerar explosao
+	local explosao = Instance.new("Explosion")
+	wait(0.3)
+    explosao.BlastRadius = 5.0  
+    explosao.BlastPressure = 1000000  
+	explosao.Parent = game.Workspace
+	
+end)
