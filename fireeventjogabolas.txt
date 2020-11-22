@@ -1,0 +1,14 @@
+local gun = script.Parent
+local gun_shot = gun.Handle ['Gun'] 
+
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local remoteEvent = ReplicatedStorage:WaitForChild('ShotEvent')
+gun.Equipped:Connect(function(mouse)
+	mouse.Button1Down:Connect(function()
+		remoteEvent:FireServer(gun.Handle.Position,mouse.hit.p)
+		 wait(0.6)
+		gun_shot:Play()
+		
+		 
+	end) 
+end)
