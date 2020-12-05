@@ -1,0 +1,17 @@
+local player = game:GetService("Players").LocalPlayer
+local character = player.Character
+local animation = script.Parent:FindFirstChild("Animation")
+local swingAnimation = character.Humanoid:LoadAnimation (animation)
+
+local canSwing = true
+
+local debounce = 1
+
+script.Parent.Activated:Connect(function()
+	if canSwing then 
+		canSwing = false
+		swingAnimation:Play()
+		wait(debounce)
+		canSwing = true
+	end
+end)
