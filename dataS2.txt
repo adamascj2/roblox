@@ -1,0 +1,44 @@
+local DataStoreService = game:GetService("DataStoreService")
+local experienceStore = DataStoreService:GetDataStore("PlayerExperience")
+local playerService = game:GetService("Players")
+
+local function saiu(player)
+	local data 
+	local success, err = pcall(function()
+		data = experienceStore:GetAsync(player.Name)
+		if data and experienceStore:GetAsync(player.Name ) ~= 11111 then 
+				   
+			       print("ja existe, claro e nao vitorioso.mudando")	
+				    experienceStore:SetAsync(player.Name, 00000)
+			       
+			 
+			else
+			print('nao faz sentido nao ter ou vitorioso')	 
+			end 
+ 		
+		
+		
+		
+		
+		print(experienceStore:GetAsync(player.Name))
+		 if(  experienceStore:GetAsync(player.Name ) == 00000 )then
+			 print( "JA JOGOU" )
+		 end
+		
+		 
+end)
+ 
+if success then
+	print("Success!")
+	 
+	else
+	
+	print ("nao gravou" )
+end
+
+ end
+
+ 
+
+
+playerService.PlayerRemoving:Connect(saiu)

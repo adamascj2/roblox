@@ -1,0 +1,56 @@
+local DataStoreService = game:GetService("DataStoreService")
+local experienceStore = DataStoreService:GetDataStore("PlayerExperience")
+local playerService = game:GetService("Players")
+
+local mensagem = script.Parent
+
+local function entrou(player)
+	local data 
+	local success, err = pcall(function()
+		data = experienceStore:GetAsync(player.Name)
+		if data then 
+				 
+			print("aviso:ja existe")	
+				 
+		else
+			print("aviso:entrando")
+				mensagem.Text = "INICIANTE"
+			end
+		
+		
+		
+		
+		
+		print(experienceStore:GetAsync(player.Name))
+		 if(  experienceStore:GetAsync(player.Name ) == 99999 )then
+			print( "INICIANTE" )
+			mensagem.Text = "INICIANTE"
+		 end
+		if(  experienceStore:GetAsync(player.Name ) == 0 )then
+			print( "JOGADOR" )
+			mensagem.Text ="JOGADOR"
+		end
+		if(  experienceStore:GetAsync(player.Name ) == 11111 )then
+			print( "VITORIOSO" )
+			mensagem.Text ="VITORIOSO"
+		 end
+		 
+end)
+ 
+if success then
+	print("Success!")
+	 
+	else
+	
+	print ("nao gravou" )
+end
+
+ end
+
+ 
+
+
+playerService.PlayerAdded:Connect(entrou)
+
+
+ 
